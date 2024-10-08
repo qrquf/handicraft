@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ecommerce/Api/Api_connection.dart';
-import 'package:ecommerce/Modal%20class/product.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
+import 'package:ecommerce/Modal%20class/productmodal1.dart';
+import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
-import 'package:ecommerce/Modal%20class/sellerhttp.dart';
+import 'package:ecommerce/Api/sellerhttp.dart';
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';
 import 'package:ecommerce/Seller/AddProduct.dart';
 import 'package:ecommerce/Seller/Product_images.dart';

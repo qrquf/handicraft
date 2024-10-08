@@ -1,8 +1,9 @@
+import 'package:ecommerce/Api/subghttp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ecommerce/Modal%20class/subg.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
+import 'package:ecommerce/Modal%20class/subgmodal.dart';
+
 import 'package:ecommerce/payment.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 var sid;

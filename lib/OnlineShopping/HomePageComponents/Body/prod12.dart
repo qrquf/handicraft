@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
+import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
-import 'package:ecommerce/Modal%20class/userhttp.dart';
+import 'package:ecommerce/Api/userhttp.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/Body/LatestProductsDiscription/LatestProductDescription.dart';
 var prod1,uid;
 class cate extends StatefulWidget {

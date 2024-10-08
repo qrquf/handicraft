@@ -1,16 +1,13 @@
-import 'package:ecommerce/AAAAAA/new2.dart';
-import 'package:ecommerce/AAAAAA/prog.dart';
-import 'package:ecommerce/AAAAAA/user.dart';
-import 'package:ecommerce/Modal%20class/subg.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
+
+
+import 'package:ecommerce/Api/subghttp.dart';
+import 'package:ecommerce/Modal%20class/subgmodal.dart';
 import 'package:ecommerce/OnlineShopping/OnlineShopping.dart';
 import 'package:ecommerce/OnlineShopping/WelcomeScreen.dart';
-import 'package:ecommerce/OnlineShopping/localstorage.dart';
+
 import 'package:ecommerce/Seller/AddProduct.dart';
 import 'package:ecommerce/Seller/DashBoard.dart';
-import 'package:ecommerce/footer.dart';
 import 'package:ecommerce/logo.dart';
-import 'package:ecommerce/AAAAAA/new.dart';
 import 'package:ecommerce/payment.dart';
 import 'package:flutter/material.dart';
 //import 'package:ecommerce/new2.dart';

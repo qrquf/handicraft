@@ -1,10 +1,10 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/feedhttp.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
+import 'package:ecommerce/Api/feedhttp.dart';
+import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
-import 'package:ecommerce/Modal%20class/userhttp.dart';
+import 'package:ecommerce/Api/userhttp.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/Body/LatestProductsDiscription/LatestProductDescription.dart';
 import 'package:ecommerce/OnlineShopping/OnlineShopping.dart';
  httpServices13 http=httpServices13();

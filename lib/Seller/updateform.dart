@@ -1,5 +1,5 @@
+import 'package:ecommerce/Api/subghttp.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
 import 'package:ecommerce/Modal%20class/updatemodal.dart';
 import 'package:ecommerce/Seller/DashBoard.dart';
 import 'package:ecommerce/Seller/proddetails1.dart';

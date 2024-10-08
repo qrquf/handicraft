@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
+import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
-import 'package:ecommerce/Modal%20class/sellerhttp.dart';
+import 'package:ecommerce/Api/sellerhttp.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/HamburgerMenu.dart';
 import 'package:ecommerce/Seller/AddProduct.dart';
 import 'package:ecommerce/Seller/prodDetails.dart';

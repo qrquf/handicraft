@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/userhttp.dart';
+import 'package:ecommerce/Api/userhttp.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Profile%20Page/ProfilePage.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/Body/branding.dart';
 import 'package:ecommerce/OnlineShopping/LoginPage.dart';

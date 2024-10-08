@@ -1,13 +1,14 @@
 //import 'dart:html';
 
+import 'package:ecommerce/Api/subghttp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ecommerce/Api/Api_connection.dart';
-import 'package:ecommerce/Modal%20class/product.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
+import 'package:ecommerce/Modal%20class/productmodal1.dart';
+import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/sellerModal.dart';
-import 'package:ecommerce/Modal%20class/subg.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
+import 'package:ecommerce/Modal%20class/subgmodal.dart';
+
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';
 import 'package:ecommerce/Seller/Product_images.dart';
 import'./DashComponent.dart';

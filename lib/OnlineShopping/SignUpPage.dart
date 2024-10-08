@@ -1,16 +1,17 @@
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 
+import 'package:ecommerce/Api/subghttp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/AAAAAA/new.dart';
+
 import 'package:ecommerce/Api/Api_connection.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
+
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/OnlineShopping/use.dart';
 import 'package:ecommerce/Seller/updateform.dart';
-import 'package:ecommerce/userer.dart';
+import 'package:ecommerce/Modal%20class/userermodal.dart';
 import 'LoginPage.dart';
 import 'package:http/http.dart';
 import'';

@@ -2,15 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/AAAAAA/new.dart';
-import 'package:ecommerce/AAAAAA/postmode.dart';
+
 import 'package:ecommerce/Api/Api_connection.dart';
-import 'package:ecommerce/Modal%20class/userhttp.dart';
+import 'package:ecommerce/Api/userhttp.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Profile%20Page/ProfilePage.dart';
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/OnlineShopping/use.dart';
-import 'package:ecommerce/userer.dart';
+import 'package:ecommerce/Modal%20class/userermodal.dart';
 //import 'LoginPage.dart';
 import 'package:http/http.dart';
 var x;

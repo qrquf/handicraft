@@ -1,8 +1,8 @@
 import 'package:contactus/contactus.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/AAAAAA/httpservicesphotos.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
-import 'package:ecommerce/Modal%20class/sellerhttp.dart';
+
+import 'package:ecommerce/Api/producthttp.dart';
+import 'package:ecommerce/Api/sellerhttp.dart';
 import 'package:ecommerce/Modal%20class/sellermodal1.dart';
 import 'package:ecommerce/Modal%20class/sellmdal1.dart';
 

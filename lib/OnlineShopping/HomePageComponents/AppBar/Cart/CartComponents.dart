@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/carthttp.dart';
+import 'package:ecommerce/Api/carthttp.dart';
 import 'package:ecommerce/Modal%20class/cartmodal.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
+import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
 var x;
 httpServices14 http=new httpServices14();

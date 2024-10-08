@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/carthttp.dart';
+import 'package:ecommerce/Api/carthttp.dart';
 import 'package:ecommerce/Modal%20class/cartmodal.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
-import 'package:ecommerce/Modal%20class/userhttp.dart';
+import 'package:ecommerce/Api/userhttp.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Cart/CartComponents.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Profile%20Page/ProfilePage.dart';
 import 'package:ecommerce/OnlineShopping/OnlineShopping.dart';
-import 'package:ecommerce/selectcart.dart';
-import 'package:ecommerce/userer.dart';
+import 'package:ecommerce/Modal%20class/selectcartmodal.dart';
+import 'package:ecommerce/Modal%20class/userermodal.dart';
 var dart;
 var eee;
 

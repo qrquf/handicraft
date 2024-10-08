@@ -6,8 +6,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Modal%20class/producthttp.dart';
-import 'package:ecommerce/Modal%20class/sellerhttp.dart';
+import 'package:ecommerce/Api/producthttp.dart';
+import 'package:ecommerce/Api/sellerhttp.dart';
 //import 'package:flutter/rendering.dart';
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';
 import 'package:ecommerce/Seller/DashBoard.dart';

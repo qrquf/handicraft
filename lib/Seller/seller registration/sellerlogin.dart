@@ -1,9 +1,9 @@
 
+import 'package:ecommerce/Api/subghttp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ecommerce/Modal%20class/sellerhttp.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
+import 'package:ecommerce/Api/sellerhttp.dart';
 import 'package:ecommerce/OnlineShopping/ForgotPassword.dart';
 import 'package:ecommerce/OnlineShopping/OnlineShopping.dart';
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';

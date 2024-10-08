@@ -1,32 +1,27 @@
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'dart:html';
+import 'package:ecommerce/Api/subghttp.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ecommerce/Modal%20class/sellerhttp.dart';
-import 'package:ecommerce/Modal%20class/subghttp.dart';
-import 'package:ecommerce/Modal%20class/userhttp.dart';
-//import 'package:ecommerce/Modal%20class/userhttp.dart';
+import 'package:ecommerce/Api/sellerhttp.dart';
+import 'package:ecommerce/Api/userhttp.dart';
 import 'package:ecommerce/OnlineShopping/ForgotPassword.dart';
-import 'package:ecommerce/OnlineShopping/HomePageComponents/Body/LatestProducts.dart';
 import 'package:ecommerce/OnlineShopping/OnlineShopping.dart';
 import 'package:ecommerce/OnlineShopping/reusableWidget/reusableWidget.dart';
-import 'package:ecommerce/stat.dart';
 import 'package:regexpattern/regexpattern.dart';
 import 'package:intl/intl.dart';
 import 'SignUpPage.dart';
-int i=0;
-var j=0;
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
+int i = 0;
+var j = 0;
+
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _passController = TextEditingController();
 
 class LoginPage extends StatefulWidget {
   var x;
-LoginPage({x})
-  {
-    j=x;
-
+  LoginPage({this.x}) {
+    print("hi");
   }
+
   @override
   _LoginPageState createState() {
     return _LoginPageState();
@@ -34,12 +29,10 @@ LoginPage({x})
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
-   RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-        String s="enter password";
-        
-  
+  RegExp regex =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+  String s = "Enter password";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,205 +41,140 @@ class _LoginPageState extends State<LoginPage> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.limeAccent, Colors.blue, Colors.greenAccent],
+            colors: [Colors.tealAccent, Colors.blueAccent, Colors.purpleAccent],
             begin: Alignment.topCenter,
-            end: Alignment.bottomLeft,
+            end: Alignment.bottomCenter,
           ),
         ),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
               20,
-              MediaQuery.of(context).size.height * 0.2,
+              MediaQuery.of(context).size.height * 0.1,
               20,
               0,
             ),
             child: Column(
               children: <Widget>[
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                // App logo or icon
+                Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                  size: 80,
                 ),
+                SizedBox(height: 40),
+
+                // Email input field
                 reusableTextField(
                   "Enter User Mail",
                   Icons.person_outline,
                   false,
                   _emailController,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
+
+                // Password input field with validation
                 TextFormField(
                   controller: _passController,
+                  obscureText: true,
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    helperText: s
+                    hintText: 'Enter Password',
+                    hintStyle: TextStyle(color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.1),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
+                    helperText: s,
+                    helperStyle: TextStyle(color: Colors.white),
                   ),
-                  
-                onSaved:(value) {
-                  if(!regex.hasMatch(value.toString())
-                  )
-                  {
-                    s="Enter valid password";
-                  
-                  }
-                  else
-                  {
-                    
-                  }
-                }  
+                  onSaved: (value) {
+                    if (!regex.hasMatch(value.toString())) {
+                      s = "Enter a valid password";
+                    }
+                  },
                 ),
-                  
-                
-                //reusableTextField(
-                  //"Enter Password",
-                  //Icons.lock_outline,
-                  //true,
-                  //_passController,
-                //)
-                
-                const SizedBox(
-                  height: 20,
-                ),
-                
+                const SizedBox(height: 20),
+
+                // Stylish login button with gradient
                 buttons(
                   context,
                   "Log In",
-                  () async{
-                    state p=state();
-                    
-                    postApiHttp1 http=postApiHttp1();
-                    await http.saveData(_emailController.text.toString(),_passController.text.toString());
-                    j=await http.givedata(0);
-                    if(j==0)
-                    {
-                      DateTime d=DateTime.now();
-                 	DateTime date=DateTime.now();
-  String format=DateFormat('yyyy-MM-dd').format(date);
-  DateTime ss=DateTime(date.year,date.month-1,date.day-1);
-  String format1=DateFormat('yyyy-MM-dd').format(ss);   
-                  httpServices21 htp=httpServices21();
-                htp.del1(format1);
-                    Navigator.pushReplacement(
-                           context,
-                            MaterialPageRoute(
-                               builder: (context) =>  OnlineShopping(
-                               _emailController.text.toString(),_passController.text.toString(),),
-                             ),
-                           );
-                          
-                  
-                    }
-                    
-                    else{
-                  showDialog(context: context, builder: ((context) => AlertDialog(
-                  title:Text("Invalid email or password entered"),
-                  content:ElevatedButton(child:Text("O.K"),onPressed: () {Navigator.pop(context);},))));
-                    }}
-                    // FirebaseAuth.instance
-                    //     .signInWithEmailAndPassword(
-                    //       email: _emailController.text,
-                    //       password: _passController.text,
-                    //     )
-                    //     .then(
-                    //       (value) => Navigator.pushReplacement(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //           builder: (context) => const OnlineShopping(),
-                    //         ),
-                    //       ),
-                    //     )
-                    //     .onError(
-                    //   (error, stackTrace) {
-                    //     return showDialog(
-                    //       context: context,
-                    //       builder: (BuildContext context) {
-                    //         return AlertDialog(
-                    //           shape: RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.circular(20),
-                    //           ),
-                    //           title: const Text("OOPs...😒🙁☹🙃"),
-                    //           content: const Text(
-                    //               "Wrong UserId or Password or Don't have account 💀☠👽"),
-                    //           actions: [
-                    //             TextButton(
-                    //               onPressed: () {
-                    //                 Navigator.pop(context);
-                    //               },
-                    //               child: const Text(
-                    //                 "Chala Jaa",
-                    //                 style: TextStyle(
-                    //                     fontWeight: FontWeight.bold,
-                    //                     fontSize: 15),
-                    //               ),
-                    //             ),
-                    //           ],
-                    //         );
-                    //       },
-                    //     );
-                    //   },
-                    // );
-                ,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(175, 0, 0, 0),
-                  child: Align(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ForgotPassword(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Forgot Password",
-                          style: TextStyle(color: Colors.white),
-                        )),
-                  ),
-                ),
-                const Text("OR"),
-             /*   SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: ElevatedButton(
-                      onPressed: () {Navigator.pushReplacement(
-                            context,
-                             MaterialPageRoute(
-                               builder: (context) =>  OnlineShopping(_emailController.text,_passController.text),
-                             ),
-                         );
-                        // await GoogleSignInSignUpMethod().signInWithGoogle();
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const OnlineShopping(),
-                        //   ),
-                        // );
-                      },
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(10),
-                        backgroundColor: MaterialStateProperty.resolveWith(
-                              (states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.black26;
-                            }
-                            return Colors.white;
-                          },
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                  () async {
+                    postApiHttp1 http = postApiHttp1();
+                    await http.saveData(_emailController.text.toString(),
+                        _passController.text.toString());
+                    j = await http.givedata(0);
+                    if (j == 0) {
+                      DateTime date = DateTime.now();
+                      String format = DateFormat('yyyy-MM-dd').format(date);
+                      DateTime ss = DateTime(date.year, date.month - 1, date.day - 1);
+                      String format1 = DateFormat('yyyy-MM-dd').format(ss);
+
+                      httpServices21 htp = httpServices21();
+                      htp.del1(format1);
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OnlineShopping(
+                            _emailController.text.toString(),
+                            _passController.text.toString(),
                           ),
                         ),
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Invalid email or password entered"),
+                          content: ElevatedButton(
+                            child: Text("O.K"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(height: 10),
+
+                // Forgot password link
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPassword(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontWeight: FontWeight.w500,
                       ),
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 5,),
-                          Text("Log in with Google",style: GoogleFonts.acme(textStyle: const TextStyle(color: Colors.black)),),
-                          const Spacer(),
-                          Image.network("https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/image8-2.jpg?width=893&height=600&name=image8-2.jpg", width: 25,height: 25,)
-                        ],
-                      )),
-                ),*/
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // OR text
+                const Text(
+                  "OR",
+                  style: TextStyle(color: Colors.white70, fontSize: 16),
+                ),
+                const SizedBox(height: 20),
+
+                // Sign up redirect link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -254,6 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                       "Don't have an account?",
                       style: TextStyle(
                         color: Colors.white70,
+                        fontSize: 16,
                       ),
                     ),
                     GestureDetector(
@@ -268,7 +197,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         " Sign Up",
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     )
                   ],
@@ -281,31 +213,23 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
- Xyz(context)
-{
-  if(i==1)
-  {
-    return 
-                buttons(
-                  context,
-                  "Log In",
-                  () {
-                  
-                    Navigator.pushReplacement(
-                           context,
-                            MaterialPageRoute(
-                               builder: (context) =>  OnlineShopping(_emailController.text,_passController.text),
-                             ),
-                           );
-                  });
-  }
-                  
-    
-  else
-  {
+
+Xyz(context) {
+  if (i == 1) {
     return buttons(
-                  context,
-                  "Log In",
-                () {});
+      context,
+      "Log In",
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                OnlineShopping(_emailController.text, _passController.text),
+          ),
+        );
+      },
+    );
+  } else {
+    return buttons(context, "Log In", () {});
   }
 }

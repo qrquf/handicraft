@@ -2,10 +2,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/Checkout.dart';
-import 'package:ecommerce/Modal%20class/carthttp.dart';
+import 'package:ecommerce/Api/carthttp.dart';
 import 'package:ecommerce/Modal%20class/feedbackmodal.dart';
-import 'package:ecommerce/Modal%20class/feedhttp.dart';
+import 'package:ecommerce/Api/feedhttp.dart';
 import 'package:ecommerce/Notification.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Cart/Cart.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Profile%20Page/ProfilePage.dart';
@@ -24,18 +23,9 @@ var id2;
 httpfeed http=httpfeed();
 
 class LatestProductsDescription extends StatefulWidget {
- // final  prodDescriptionName;
-  //final prodDescriptionImage;
-  //final prodDescriptionOldPrice;
-  //final prodDescriptionNewPrice;
-  //final x=Icons.favorite_border;
  
    LatestProductsDescription(
       {x,y,z,w,category,name,id,pid
-      //this.prodDescriptionName,
-      //this.prodDescriptionImage,
-     //this. prodDescriptionOldPrice,
-      //this.prodDescriptionNewPrice
 
       })
       {id1=id;
