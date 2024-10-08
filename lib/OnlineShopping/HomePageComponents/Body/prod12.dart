@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Api/producthttp.dart';
 import 'package:ecommerce/Modal%20class/productmodal.dart';
@@ -12,8 +11,7 @@ class cate extends StatefulWidget {
     prod1=prod;
     
 print(prod1);
-
-    print("shubh");
+print("shubh");
  //   xy=idd;
    // print(xy);
   }
@@ -37,23 +35,31 @@ print(prod1);
       
         future: htp.getAllPost1(prod1),
         builder: ((context, snapshot) {
-          //if(snapshot.hasData)
-         // {
+          if(snapshot.hasData)
+          {
           
           
             List<prodModal> picture = snapshot.data!;
             return ShowPostList(context,picture);
-          
-          //}
-        
-        //else{
-          //return CircularProgressIndicator();
-        //}
-        //}else
-        //{
-          //return CircularProgressIndicator();
-        //}
-        }),
+          }
+          else
+          {
+            return Scaffold(
+              body:Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.limeAccent, Colors.blue, Colors.greenAccent],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomLeft,
+          ),
+        ),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+              )
+            );
+          }
+          }
+        ),
 
       )
        
@@ -93,6 +99,7 @@ print(prod1);
                   
                 SizedBox(child:       
                   LatestProductsDescription(
+                    name:"",
                      x: posts[index].name.toString(),
                     y: "http://handy.ludokingatm.com/fileupload/"+posts[index].product1.toString(),
                     z: posts[index].price.toString(),

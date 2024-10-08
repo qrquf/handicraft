@@ -109,7 +109,7 @@ class Dashboard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => addproduct1(posts[0].id.toString()),
+                        builder: (context) => AddProduct12(posts[0].id.toString()),
                       ),
                     );
                   },

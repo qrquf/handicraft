@@ -1,18 +1,16 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Api/carthttp.dart';
-import 'package:ecommerce/Modal%20class/feedbackmodal.dart';
+import 'package:ecommerce/Modal class/feedbackmodal.dart';
 import 'package:ecommerce/Api/feedhttp.dart';
 import 'package:ecommerce/Notification.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Cart/Cart.dart';
-import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Profile%20Page/ProfilePage.dart';
+import 'package:ecommerce/OnlineShopping/HomePageComponents/AppBar/Profile Page/ProfilePage.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/Body/LatestProductsDiscription/comment.dart';
 import 'package:ecommerce/OnlineShopping/HomePageComponents/Body/prod12.dart';
 import 'package:ecommerce/OnlineShopping/OnlineShopping.dart';
-
 import '../LatestProducts.dart';
+
 var a;
 var b;
 var c;
@@ -20,63 +18,67 @@ var q;
 var category1;
 var id1;
 var id2;
-httpfeed http=httpfeed();
+httpfeed http = httpfeed();
 
 class LatestProductsDescription extends StatefulWidget {
- 
-   LatestProductsDescription(
-      {x,y,z,w,category,name,id,pid
+  // Constructor with required parameters
+  LatestProductsDescription({
+    this.x, 
+    this.y, 
+    this.z, 
+    this.w, 
+    required this.category, 
+    required this.name, 
+    required this.id, 
+    required this.pid,
+  }) {
+    // Initialize variables
+    id1 = id;
+    id2 = pid;
+    category1 = category;
+    a = x;
+    b = y;
+    c = z;
+    q = w;
 
-      })
-      {id1=id;
-      id2=pid;
-      print("huduk");
-      print(id);
-      print(id2);
+    // Debugging statements
+    print("huduk");
+    print(id);
+    print(id2);
+    print(d);
+    print(c);
+  }
 
-        category1=category;
-        a=x;
-        b=y;
-        c=z;
-        q=w;
-        print(d);
-        print(c);
-       // print(this.prodDescriptionName);
-      }
-  
-      
+  final String category;
+  final String name;
+  final String id;
+  final String pid;
+  final dynamic x, y, z, w;
 
   @override
-  _LatestProductsDescriptionState createState() {
-      return _LatestProductsDescriptionState();
-}}
+  _LatestProductsDescriptionState createState() => _LatestProductsDescriptionState();
+}
 
 class _LatestProductsDescriptionState extends State<LatestProductsDescription> {
- var likes="0";
- var rating="0";
-var comment="1";
-TextEditingController com=TextEditingController();
-   var d=Colors.lime;
-  var x=Icons.favorite_border;
-  var y=[Colors.grey,Colors.grey,
-  Colors.grey,
-  Colors.grey,
-  Colors.grey,];
+  var likes = "0";
+  var rating = "0";
+  var comment = "1";
+  TextEditingController com = TextEditingController();
+  var d = Colors.lime;
+  var x = Icons.favorite_border;
+  var y = List.generate(5, (index) => Colors.grey);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //toolbarHeight: 100,
-        elevation: 0,
         title: const Text("Online Shopping"),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => Cart(),
-                ),
+                MaterialPageRoute(builder: (context) => Cart()),
               );
             },
             icon: const Icon(Icons.add_shopping_cart_rounded),
@@ -86,502 +88,315 @@ TextEditingController com=TextEditingController();
             icon: const Icon(Icons.person),
           ),
         ],
-        bottom: AppBar(
-          automaticallyImplyLeading: false,
-          title: Container(
-            width: double.infinity,
-            height: 40,
-            color: Colors.white,
-            child: Center(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Search",
-                  prefixIcon: const Icon(Icons.search),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Search",
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide.none,
                 ),
+                filled: true,
+                fillColor: Colors.white,
               ),
             ),
           ),
         ),
       ),
-      body:FutureBuilder<List<feedmodal>>
-      (
-      
-        future: http.getAllPost1(id1,id2) ,
-        builder: ((context, snapshot) {
-          
-          if(snapshot.hasData)
-          {
+      body: FutureBuilder<List<feedmodal>>(
+        future: http.getAllPost1(id1, id2),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             List<feedmodal>? picture = snapshot.data!;
-            return xxy(context,picture);
+            return _buildProductDetails(context, picture);
+          } else {
+            return const Center(child: CircularProgressIndicator());
           }
-          //}
-        
-        else{
-          return CircularProgressIndicator();
-        }
-  }),
+        },
+      ),
+    );
+  }
 
-      ));
-          }
-          xxy(context,List<feedmodal> posts)
-          {
-            int j=0;
-            for(int i=0;i<posts.length;i++)
-            {print("yaad");
-              print(id2);
-              print(posts[i].pId);
+  Widget _buildProductDetails(BuildContext context, List<feedmodal> posts) {
+    int j = 0;
+    for (int i = 0; i < posts.length; i++) {
+      if (posts[i].pId.toString() == id2) {
+        j = 1;
+        likes = posts[i].likes.toString();
+        comment = posts[i].comment.toString();
+        rating = posts[i].rating.toString();
+      }
+    }
+    if (likes != "0") {
+      x = Icons.favorite;
+      d = Colors.pink;
+    }
+    if (rating != "0") {
+      for (int i = 0; i < int.parse(rating); i++) {
+        y[i] = Colors.yellow;
+      }
+    }
 
-              if(posts[i].pId.toString()==id2)
-              {
-                j=1;
-                print("yaad");
-                
-                likes=posts[i].likes.toString();
-                comment=posts[i].comment.toString();
-                rating=posts[i].rating.toString();
-                print(likes);
-              }
-            }
-            if(likes!="0")
-            {
-              x=Icons.favorite;
-              d=Colors.pink;
-            }
-            
-            if(rating!="0")
-            {
-              for(int i=0;i<=int.parse(rating)-1;i++)
-              {
-                y[i]=Colors.yellow;
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      children: [
+        _buildProductImage(),
+        const SizedBox(height: 20),
+        _buildProductInfo(),
+        // _buildSizeColorQuantitySelectors(context),
+        _buildActionButtons(posts),
+        const Divider(thickness: 1, color: Colors.grey),
+        _buildProductSpecifications(),
+        const SizedBox(height: 20),
+        _buildRatingSection(posts),
+        const SizedBox(height: 20),
+        _buildCommentSection(),
+        _buildViewCommentsButton(),
+        _buildSimilarProductsHeader(),
+        const SizedBox(height: 20),
+        LatestProducts(),
+      ],
+    );
+  }
 
-              }
-
-            }
-
-            
-     return ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          Column(
-            children: [
-              Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                  color: Colors.white,
-                  child: Image.network(b)),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              ListTile(
-                leading: Text(
-                  a,
-                  style: const TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                title: Text(
-                  "${q}",
-                  textAlign: TextAlign.right,
-                ),
-                subtitle: Text(
-                  "${c}",
-                  style:
-                      const TextStyle(decoration: TextDecoration.lineThrough),
-                  textAlign: TextAlign.right,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-
-              //Product Description
-              Row(
-                children: [
-                  //Size
-                  Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text("Size"),
-                              content: const Text("Choose the size"),
-                              actions: [
-                                MaterialButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  textColor: Colors.blue,
-                                  child: const Text("Close"),
-                                )
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      color: Colors.white,
-                      textColor: Colors.grey,
-                      elevation: 0.2,
-                      child: Row(
-                        children: const [
-                          Expanded(child: Text("Size")),
-                          Expanded(child: Icon(Icons.arrow_drop_down)),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  //Color
-                  Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text("Color"),
-                              content: const Text("Choose the color"),
-                              actions: [
-                                MaterialButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  textColor: Colors.blue,
-                                  child: const Text("Close"),
-                                )
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      color: Colors.white,
-                      textColor: Colors.grey,
-                      elevation: 0.2,
-                      child: Row(
-                        children: const [
-                          Expanded(child: Text("Color")),
-                          Expanded(child: Icon(Icons.arrow_drop_down)),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  //Quantity
-                  Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text("Quantity"),
-                              content: const Text("Choose the quantity"),
-                              actions: [
-                                MaterialButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  textColor: Colors.blue,
-                                  child: const Text("Close"),
-                                )
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      color: Colors.white,
-                      textColor: Colors.grey,
-                      elevation: 0.2,
-                      child: Row(
-                        children: const [
-                          Expanded(child: Text("Qty")),
-                          Expanded(child: Icon(Icons.arrow_drop_down)),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              //Buy, Add to Cart and favourite button
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: MaterialButton(
-                        onPressed: () {Navigator.pushReplacement(
-                            context,
-                             MaterialPageRoute(
-                               builder: (context) =>  Contact(id:id2.toString()),
-                             ),
-                         );},
-
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        elevation: 0.2,
-                        child: const Text("Contact Seller")),
-                  ),
-                  
-                  IconButton(
-                    onPressed: ()async {
-                      
-                      httpServices14 t= httpServices14(pid: id2,uid: id1);
-                      int j=await t.insertcart1(id1,id2);
-                      if(j==0)
-                      {
-                         await t.insertcart(id1,id2);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>  Cart(emp: em),
-                        ),
-                      );
-                    }
-                    else
-                    {
-                       showDialog(context: context, builder: ((context) => AlertDialog(
-                  title:Text("Product already exist"),
-                  content:ElevatedButton(child:Text("O.K"),onPressed: () {Navigator.pop(context);},))));
-                    }},
-                    icon: const Icon(
-                      Icons.add_shopping_cart,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: ()=> setState(() {
-                      
-                      if(d==Colors.pink)
-                      {
-                        d=Colors.lime;
-
-                        likes="0";
-                         http.feedupdate(posts[0].uId.toString(), id2.toString(), comment.toString(), likes.toString(),
-                         rating.toString());
-                         
-                      }
-                      else
-                      {
-                        likes="1";
-                        http.feedupdate(posts[0].uId.toString(), id2.toString(), comment.toString(), likes.toString(),
-                         rating.toString());
-                         
-                        d=Colors.pink;
-                      }
-
-                    ;}) ,
-                    icon: Icon(
-                      x,
-                      color: d,
-                    ),
-                  )
-                ],
-              ),
-              Divider(
-                color: Colors.grey.shade400,
-                thickness: 1,
-                indent: 10,
-                endIndent: 10,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-
-              //Product Specification Header
-              Row(
-                children: const [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Product Specifications",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-
-              //Product Specifications Details
-              Container(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Column(
-                  children: [
-                    //Product Name
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        
-                        SizedBox(height:10),
-                        const Text(
-                          "Product Name",
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
-                        ),
-                        const SizedBox(
-                          width: 100,
-                        ),
-                        Text(
-                          "${a}",
-                          style:
-                              const TextStyle(color: Colors.grey, fontSize: 14),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    //Product Brand
-                    Row(
-                      children:  [
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "Product Category",
-                          style: TextStyle(color: Colors.grey, fontSize: 17),
-                        ),
-                        SizedBox(
-                          width: 100,
-                        ),
-                        Text(
-                          category1.toString(),
-                          style: TextStyle(color: Colors.grey, fontSize: 17),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    //Product Condition
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "Product Condition",
-                          style: TextStyle(color: Colors.grey, fontSize: 17),
-                        ),
-                        SizedBox(
-                          width: 68,
-                        ),
-                        Text(
-                          "New",
-                          style: TextStyle(color: Colors.grey, fontSize: 17),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(
-                height: 20,
-              ),
-              
-              Center(
-              child:Text("Rate this Product",style: TextStyle(fontSize:20,),),),
-const SizedBox(
-                height: 8,
-              ),
-              
-              Center(child:Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                 children:[
-                                             for(int i=0;i<5;i++) IconButton(onPressed: ()=> setState(() {
-                              http.feedupdate(posts[0].uId.toString(), id2.toString(), comment.toString(), likes.toString(),
-                         (i+1).toString());
-                         
-                              
-                              for(int j=i;j>=0;j--)
-                              {int p=5;
-                              int g=0;
-                                y[j]=Colors.yellow;
-                      
-                            }
-                            for(int k=i+1;k<5;k++)
-                            {
-                              y[k]=Colors.grey;
-                            }
-                              
-                            ;}
-                            ), icon: Icon(Icons.star,color:y[i]))
-           ]
-                        )),
-                        const SizedBox(
-                height: 20,
-              ),
-              Divider(),
-              SizedBox(height:20),
-
-               Container(
-            color:Colors.white,
-          child:TextField(
-            
-            controller: com,
-            //minLines: 5,
-            keyboardType: TextInputType.multiline,
-         minLines: 5,
-         maxLines: 10,
-         
-            decoration: InputDecoration(
-              labelText: "Add your Review",
-              fillColor: Colors.white
-              
-              
-            )),
-
-          ),  
-
-        //  Chip(label: Text("view Comments"),,),
-           SizedBox(height:20),
-           Align(child:ElevatedButton(onPressed: () {
-comment=com.text.toString();
-            http.feedupdate(posts[0].uId.toString(), id2.toString(), comment.toString(), likes, rating);
-            
-           },child: Text("post"),)),
-          SizedBox(height:20),
-
-            
-              TextButton(child:Text("view Comments"),onPressed:() {
-                 Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Commentx(x:id1,y:id2),
-                          ),
-                        );
-              }),  //Similar Products Headers
-              Row(
-                children: const [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Similar Products",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-
-              //Similar Products Images
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child:  LatestProducts(),
-              )
-            ],
-          )
+  Widget _buildProductImage() {
+    return Container(
+      width: 200, // Fixed width
+      height: 200, // Fixed height
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
         ],
-      );
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0), // Rounded corners
+        child: Image.network(
+          b,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return const Center(child: Text("Image not available")); // Handle image loading errors
+          },
+        ),
+      ),
+    );
+  }
 
-          }        }
+  Widget _buildProductInfo() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            a,
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            q,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            c,
+            style: const TextStyle(fontSize: 16, decoration: TextDecoration.lineThrough, color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButtons(List<feedmodal> posts) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Contact(id: id2.toString())),
+                );
+              },
+              color: Colors.blue,
+              textColor: Colors.white,
+              elevation: 0.2,
+              child: const Text("Contact Seller"),
+            ),
+          ),
+          const SizedBox(width: 10), // Spacing between buttons
+          IconButton(
+            onPressed: () async {
+              httpServices14 t = httpServices14(pid: id2, uid: id1);
+              int j = await t.insertcart1(id1, id2);
+              if (j == 0) {
+                await t.insertcart(id1, id2);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Cart()),
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("Product already exists"),
+                    content: ElevatedButton(
+                      child: const Text("O.K"),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ),
+                );
+              }
+            },
+            icon: const Icon(Icons.add_shopping_cart, color: Colors.blue),
+          ),
+          IconButton(
+            onPressed: () => setState(() {
+              if (d == Colors.pink) {
+                d = Colors.lime;
+                likes = "0";
+              } else {
+                likes = "1";
+                d = Colors.pink;
+              }
+              http.feedupdate(posts[0].uId.toString(), id2.toString(), comment.toString(), likes.toString(), rating.toString());
+            }),
+            icon: Icon(x, color: d),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProductSpecifications() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Product Specifications", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          const SizedBox(height: 10),
+          _buildSpecificationRow("Product Name", a),
+          const SizedBox(height: 10),
+          _buildSpecificationRow("Product Category", category1.toString()),
+          const SizedBox(height: 10),
+          _buildSpecificationRow("Likes", likes),
+          const SizedBox(height: 10),
+          _buildSpecificationRow("Rating", rating),
+          const SizedBox(height: 10),
+          _buildSpecificationRow("Comments", comment),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSpecificationRow(String title, String value) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        Text(value),
+      ],
+    );
+  }
+
+  Widget _buildRatingSection(List<feedmodal> posts) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Rate this product", style: TextStyle(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              for (int i = 0; i < 5; i++)
+                IconButton(
+                  icon: Icon(Icons.star, color: y[i]),
+                  onPressed: () {
+                    setState(() {
+                      rating = (i + 1).toString();
+                      for (int j = 0; j < 5; j++) {
+                        y[j] = (j < int.parse(rating)) ? Colors.yellow : Colors.grey;
+                      }
+                    });
+                  },
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCommentSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Leave a Comment", style: TextStyle(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          TextField(
+            controller: com,
+            decoration: InputDecoration(
+              hintText: "Write your comment...",
+              border: OutlineInputBorder(),
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.send),
+                onPressed: () {
+                  setState(() {
+                    comment = com.text;
+                    com.clear();
+                  });
+                  // Add code to send comment to server
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildViewCommentsButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: MaterialButton(
+        onPressed: () {
+          // Handle view comments button press
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Commentx()),
+          );
+        },
+        color: Colors.blue,
+        textColor: Colors.white,
+        elevation: 0.2,
+        child: const Text("View Comments"),
+      ),
+    );
+  }
+
+  Widget _buildSimilarProductsHeader() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Text(
+        "Similar Products",
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      ),
+    );
+  }
+}

@@ -110,7 +110,7 @@ ShowPostList(BuildContext context,List<updatemodal> posts)
         return Column(
           children:
           [
-            SizedBox(height:950,width:500,child:addproduct12(
+            SizedBox(height:950,width:500,child:AddProduct1(
                                id :posts[index].id,
                                 name:posts[index].name.toString(),
                                product1:posts[index].product1.toString(),

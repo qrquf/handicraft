@@ -1,4 +1,5 @@
 import 'package:ecommerce/OnlineShopping/LoginPage.dart';
+import 'package:ecommerce/OnlineShopping/WelcomeScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    home: LoginPage());
+    home: WelcomeScreen());
   }
 }

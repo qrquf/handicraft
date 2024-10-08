@@ -91,6 +91,7 @@ final idi=xy;
                   
                 SizedBox(child:       
                   LatestProductsDescription(
+                    name:"",
                      x: posts[index].name.toString(),
                     y: "http://handy.ludokingatm.com/fileupload/"+posts[index].product1.toString(),
                     z: posts[index].price.toString(),
@@ -284,6 +285,9 @@ class Products extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => LatestProductsDescription(
+                    name:"",
+                    id:"",
+                    pid:"",
                      x:"hfdf",
                     y: "fbgxb",
                     z: "dfbdg",

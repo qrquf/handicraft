@@ -79,7 +79,6 @@ class Catog extends StatelessWidget {
   {
     image1=image;
     cap=caption;
-    print("kama");
     print(cap);
   }
    

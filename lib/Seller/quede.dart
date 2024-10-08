@@ -111,7 +111,7 @@ give(BuildContext context,List<prodModal> posts)
       onTap: () {Navigator.push(
                             context,
                              MaterialPageRoute(
-                               builder: (context) =>  addproduct12(
+                               builder: (context) => AddProduct1(
                                id :posts[index].id,
                                 name:posts[index].name.toString(),
                                product1:posts[index].product1.toString(),

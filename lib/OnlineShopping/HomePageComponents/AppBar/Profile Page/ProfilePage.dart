@@ -28,11 +28,6 @@ class ProfilePage extends StatefulWidget {
     pss=ps;
     print(emm);
   }
-  //const ProfilePage({Key? key}) : super(key: key);
-  
-  //@override
-//  State<ProfilePage> createState() => _ProfilePageState();
-
 @override 
 createState() {
 return _ProfilePageState();}}
@@ -54,24 +49,28 @@ class _ProfilePageState extends State<ProfilePage> {
       
         future: http1.getuser1(emm) ,
         builder: ((context, snapshot) {
-          //if(snapshot.hasData)
-          //{
-          //if(snapshot.hasData)
-          //{
+          if(snapshot.hasData)
+          {
             List<userphoto1>? picture = snapshot.data!;
             return xxy(context,picture);
-          //}
-          //else if(snapshot.hasError)
-          //{
-            //return Text(snapshot.hasError.toString());
-         // }
-          //}
-        
-        //else{
-          //return CircularProgressIndicator();
-        //}
+          }
+          else
+          {
+            return Scaffold(
+              body:Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.limeAccent, Colors.blue, Colors.greenAccent],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomLeft,
+          ),
+        ),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+              )
+            );
+          }
         }),
-
       )
     );
   }
